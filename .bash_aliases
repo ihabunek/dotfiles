@@ -1,0 +1,8 @@
+alias scale="gsettings set org.gnome.desktop.interface text-scaling-factor"
+alias phpcs="phpcs --standard=PSR2 --colors -p"
+alias grep.py="grep --include=*.{py,html}"
+alias gpy="grep.py -R"
+alias grep.js="grep --include=*.{js,html} --exclude-dir=node_modules --exclude-dir=dist"
+alias grep.php="grep --include=*.php"
+alias grep.html="grep --include=*.html"
+alias beep="paplay /usr/share/sounds/KDE-Im-Sms.ogg"
