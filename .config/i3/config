@@ -24,7 +24,7 @@ bindsym $mod+Return exec i3-sensible-terminal
 bindsym $mod+q kill
 
 # rofi launcher
-bindsym $mod+d exec rofi -show run -eh 2 -fullscreen -padding 500 -opacity "85" -bw 0 -bc "$dark-gray" -bg "$dark-gray" -fg "$light-gray" -hlbg "$dark-gray" -hlfg "$purple" -font "Ubuntu Mono 16"
+bindsym $mod+d exec rofi -show run -eh 2 -fullscreen -padding 500 -opacity 85 -bw 0 -bc "$dark-gray" -bg "$dark-gray" -fg "$light-gray" -hlbg "$dark-gray" -hlfg "$purple" -font "Ubuntu Mono 16"
 
 # change focus
 # bindsym $mod+j focus left
@@ -56,6 +56,9 @@ bindsym $mod+v split v
 
 # enter fullscreen mode for the focused container
 bindsym $mod+f fullscreen toggle
+
+# move workspace to other display
+bindsym $mod+m move workspace to output left
 
 # change container layout (stacked, tabbed, toggle split)
 bindsym $mod+s layout stacking
@@ -123,6 +126,7 @@ for_window [class="Pavucontrol"] floating enable
 exec --no-startup-id nm-applet
 exec --no-startup-id redshift
 exec slack
+exec /home/ihabunek/.virtualenvs/hangups/bin/hangups
 exec yakyak
 exec firefox
 exec subl

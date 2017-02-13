@@ -1,0 +1,71 @@
+#!/usr/bin/env python
+# -*- coding: utf8 -*-
+
+from __future__ import unicode_literals
+
+import os
+import re
+
+from collections import namedtuple
+from subprocess import check_output
+
+Battery = namedtuple('Battery', ['id', 'perc', 'status', 'time'])
+
+
+def format_battery(battery):
+    perc = int(battery.perc)
+    if perc > 80:
+        icon = ""
+        color = "#00FF00"
+    elif perc > 60:
+        icon = ""
+        color = "#A8FF00"
+    elif perc > 40:
+        icon = ""
+        color = "#FFF600"
+    elif perc > 20:
+        icon = ""
+        color = "#FFAE00"
+    else:
+        icon = ""
+        color = "#FF0000"
+
+    if battery.time:
+        time = " ({})".format(battery.time[0:5])
+    else:
+        time = ''
+
+    if battery.status == 'Charging':
+        status = ' '
+    elif battery.status == 'Discharging':
+        status = ' '
+    else:
+        status = ''
+
+    return '<span foreground="{}">{} {}%{}{}</span>' \
+        .format(color, icon, perc, status, time) \
+        .encode('utf-8')
+
+
+def get_battery_data():
+    output = check_output(["acpi", "-b"])
+    lines = output.split("\n")
+
+    pattern = '^Battery ' \
+              '(?P<id>\d+): ' \
+              '(?P<status>\w+), ' \
+              '(?P<perc>\d+)%' \
+              '(, (?P<time>\d{2}:\d{2}:\d{2}))?'
+
+    matches = [re.match(pattern, l) for l in lines]
+    groups = [m.groupdict() for m in matches if m]
+
+    return [Battery(**g) for g in groups]
+
+
+instance = os.getenv('BLOCK_INSTANCE')
+batteries = get_battery_data()
+
+for battery in batteries:
+    if not instance or battery.id == instance:
+        print format_battery(battery)
