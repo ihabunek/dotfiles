@@ -1,7 +1,14 @@
 #!/usr/bin/env python
 # -*- coding: utf8 -*-
 
+"""
+A blocklet for i3blocks which displays the battery status.
+
+Requires Font Awesome for icons.
+"""
+
 from __future__ import unicode_literals
+
 
 import os
 import re
@@ -9,38 +16,39 @@ import re
 from collections import namedtuple
 from subprocess import check_output
 
+
+LEVELS = [
+    (80, "#F3F4F5", ""),
+    (60, "#EEE8AA", ""),
+    (40, "#FFA500", ""),
+    (15, "#FF6347", ""),
+    (0,  "#FF0000", ""),
+]
+
 Battery = namedtuple('Battery', ['id', 'perc', 'status', 'time'])
+
+
+def get_color_icon(perc):
+    for level in LEVELS:
+        if perc >= level[0]:
+            return (level[1], level[2])
 
 
 def format_battery(battery):
     perc = int(battery.perc)
-    charging = battery.status == 'Charging'
-    discharging = battery.status == 'Discharging'
+    is_charging = battery.status == 'Charging'
+    is_discharging = battery.status == 'Discharging'
 
-    if perc > 80:
-        icon = ""
-        color = "#00FF00"
-    elif perc > 60:
-        icon = ""
-        color = "#A8FF00"
-    elif perc > 40:
-        icon = ""
-        color = "#FFF600"
-    elif perc > 20:
-        icon = ""
-        color = "#FFAE00"
-    else:
-        icon = ""
-        color = "#FF0000"
+    color, icon = get_color_icon(perc)
 
-    if discharging and battery.time:
+    if is_discharging and battery.time:
         time = " ({})".format(battery.time[0:5])
     else:
         time = ''
 
-    if charging:
+    if is_charging:
         status = ' '
-    elif discharging:
+    elif is_discharging:
         status = ' '
     else:
         status = ''
