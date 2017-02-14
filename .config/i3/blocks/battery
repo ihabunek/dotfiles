@@ -14,6 +14,9 @@ Battery = namedtuple('Battery', ['id', 'perc', 'status', 'time'])
 
 def format_battery(battery):
     perc = int(battery.perc)
+    charging = battery.status == 'Charging'
+    discharging = battery.status == 'Discharging'
+
     if perc > 80:
         icon = ""
         color = "#00FF00"
@@ -30,14 +33,14 @@ def format_battery(battery):
         icon = ""
         color = "#FF0000"
 
-    if battery.time:
+    if discharging and battery.time:
         time = " ({})".format(battery.time[0:5])
     else:
         time = ''
 
-    if battery.status == 'Charging':
+    if charging:
         status = ' '
-    elif battery.status == 'Discharging':
+    elif discharging:
         status = ' '
     else:
         status = ''

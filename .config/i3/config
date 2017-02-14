@@ -121,6 +121,7 @@ assign [class="^yakyak$"] → $ws4
 
 # Auto float windows
 for_window [class="Pavucontrol"] floating enable
+for_window [class="Shutter"] floating enable
 
 # Autoload apps
 exec --no-startup-id nm-applet
