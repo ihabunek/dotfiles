@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# TODO: this matches the first RUNNING sink, consider better alternatives
+
+SINK=`pactl list short sinks | grep --max-count=1 RUNNING | cut -c 1`
+
+if [ ! -z "$SINK" ] && [ ! -z "$1" ]; then
+    `pactl set-sink-volume $SINK $1`
+else
+    `pactl set-sink-volume @DEFAULT_SINK@ $1`
+fi

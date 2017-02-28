@@ -1,0 +1,11 @@
+#!/bin/bash
+
+# TODO: this matches the first RUNNING sink, consider better alternatives
+
+SINK=`pactl list short sinks | grep --max-count=1 RUNNING | cut -c 1`
+
+if [ ! -z "$SINK" ]; then
+    `pactl set-sink-mute $SINK toggle`
+else
+    `pactl set-sink-mute @DEFAULT_SINK@ toggle`
+fi
