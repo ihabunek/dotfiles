@@ -10,10 +10,8 @@ set $purple      #9575cd
 # Modifier key
 set $mod Mod4
 
-# Font for window titles. Will also be used by the bar unless a different font
-# is used in the bar {} block below.
-#font pango:monospace 12
-font pango: Ubuntu Mono 14
+# Font for bar and window titles
+font pango: Ubuntu Mono 16
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -119,8 +117,11 @@ assign [class="^yakyak$"] → $ws4
 assign [instance="^crx_foaiibmpemkddjcgfichgajbfoajgpda$"] → $ws0
 
 # Auto float windows
-for_window [class="Pavucontrol"] floating enable
-for_window [class="Shutter"] floating enable
+for_window [class="^Pavucontrol$"] floating enable
+for_window [class="^Shutter$"] floating enable
+for_window [class="^vlc$"] floating enable
+for_window [class="^Thunar$"] floating enable
+for_window [class="^Keepassx$"] floating enable
 
 # Autoload apps
 exec --no-startup-id dropbox start
@@ -170,11 +171,10 @@ client.unfocused        $dark-gray  $dark-gray  $medium-gray  $green
 client.focused_inactive $dark-gray  $dark-gray  $medium-gray  $green
 client.urgent           $red        $red        $light-gray   $green
 
-
 # Wallpaper
 exec_always feh --bg-scale ~/Pictures/wallpapers/firewatch-2560x1440.jpg
 
-# Setup i3bar
+# Status bar
 bar {
     status_command i3blocks -c ~/.config/i3/i3blocks.conf
 
@@ -188,7 +188,6 @@ bar {
         urgent_workspace   $red         $red         $light-gray
     }
 }
-
 
 # Pulse Audio controls
 bindsym XF86AudioRaiseVolume exec --no-startup-id ~/.local/bin/volume +5%
