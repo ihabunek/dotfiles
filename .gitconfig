@@ -1,18 +1,31 @@
 [alias]
 	st = status --short --branch
 	lg = log --color --graph --pretty=format:'%Cred%h%Creset -%C(yellow)%d%Creset %s %Cgreen(%cr) %C(bold blue)<%an>%Creset' --abbrev-commit
-	ff = pull --ff-only
 	co = checkout
 	dc = diff --cached
+	wd = diff --word-diff
+	br = branch -vv
+
 [user]
-	email = ivan.habunek@gmail.com
+	email = ivan@habunek.com
 	name = Ivan Habunek
+
 [push]
 	default = simple
+
+[pull]
+	ff = only
+
 [core]
 	editor = vim
+	pager = diff-so-fancy | less --tabs=4 -RFX
+
 [merge]
 	conflictstyle = diff3
 	tool = meld
+
 [tag]
 	sort = v:refname
+
+[stash]
+	showPatch = true
