@@ -97,6 +97,7 @@ source /home/ihabunek/.local/bin/activate.sh
 
 # Additions to PATH
 export PATH=~/.local/bin:$PATH
+export PATH=~/.screenlayout:$PATH
 export PATH=~/.composer/vendor/bin:$PATH
 
 # Enable aws autocomplete
