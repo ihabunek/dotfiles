@@ -117,13 +117,16 @@ assign [class="^yakyak$"] → $ws4
 assign [instance="^crx_foaiibmpemkddjcgfichgajbfoajgpda$"] → $ws0
 
 # Auto float windows
-for_window [class="^Pavucontrol$"] floating enable
-for_window [class="^Shutter$"] floating enable
-for_window [class="^vlc$"] floating enable
-for_window [class="^Thunar$"] floating enable
-for_window [class="^Keepassx$"] floating enable
 for_window [class="^Arandr$"] floating enable
+for_window [class="^keepassxc$"] floating enable
+for_window [class="^Keepassx$"] floating enable
 for_window [class="^Lxappearance$"] floating enable
+for_window [class="^Pavucontrol$"] floating enable
+for_window [class="^qBittorrent$"] floating enable
+for_window [class="^Shutter$"] floating enable
+for_window [class="^Thunar$"] floating enable
+for_window [class="^vlc$"] floating enable
+for_window [title="Slack Call Minipanel"] floating enable
 
 # Load compton to enable transparency
 exec --no-startup-id compton -b --dbe

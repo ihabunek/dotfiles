@@ -6,9 +6,13 @@
 	wd = diff --word-diff
 	br = branch -vv
 
+[commit]
+	gpgsign = true
+
 [user]
 	email = ivan@habunek.com
 	name = Ivan Habunek
+	signingkey = ivan@habunek.com
 
 [push]
 	default = simple

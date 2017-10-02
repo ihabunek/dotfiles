@@ -1,11 +1,12 @@
+# If you come from bash you might have to change your $PATH.
+# export PATH=$HOME/bin:/usr/local/bin:$PATH
+
 # Path to your oh-my-zsh installation.
   export ZSH=/home/ihabunek/.oh-my-zsh
 
-# Set name of the theme to load.
-# Look in ~/.oh-my-zsh/themes/
-# Optionally, if you set this to "random", it'll load a random theme each
-# time that oh-my-zsh is loaded.
-#ZSH_THEME="robbyrussell"
+# Set name of the theme to load. Optionally, if you set this to "random"
+# it'll load a random theme each time that oh-my-zsh is loaded.
+# See https://github.com/robbyrussell/oh-my-zsh/wiki/Themes
 ZSH_THEME="steeef"
 
 # Uncomment the following line to use case-sensitive completion.
@@ -46,18 +47,20 @@ ZSH_THEME="steeef"
 # Would you like to use another custom folder than $ZSH/custom?
 # ZSH_CUSTOM=/path/to/new-custom-folder
 
+# Define virtualenvwrapper path
+export WORKON_HOME=~/.virtualenvs
+
 # Which plugins would you like to load? (plugins can be found in ~/.oh-my-zsh/plugins/*)
 # Custom plugins may be added to ~/.oh-my-zsh/custom/plugins/
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
-plugins=(git)
+plugins=(git virtualenvwrapper virtualenv)
+
+source $ZSH/oh-my-zsh.sh
 
 # User configuration
 
-  export PATH="/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin:/usr/games:/usr/local/games:/snap/bin"
 # export MANPATH="/usr/local/man:$MANPATH"
-
-source $ZSH/oh-my-zsh.sh
 
 # You may need to manually set your language environment
 # export LANG=en_US.UTF-8
@@ -73,8 +76,7 @@ source $ZSH/oh-my-zsh.sh
 # export ARCHFLAGS="-arch x86_64"
 
 # ssh
-# export SSH_KEY_PATH="~/.ssh/dsa_id"
-
+# export SSH_KEY_PATH="~/.ssh/rsa_id"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -87,24 +89,18 @@ source $ZSH/oh-my-zsh.sh
 
 
 # Load aliases
-source $HOME/.bash_aliases
-
-# Activate virtualenv
-source /home/ihabunek/.local/bin/virtualenvwrapper.sh
+source $HOME/.aliases
 
 # Activate autoenv
-source /home/ihabunek/.local/bin/activate.sh
+source ~/.autoenv/activate.sh
 
 # Additions to PATH
 export PATH=~/.local/bin:$PATH
-export PATH=~/.screenlayout:$PATH
+export PATH=~/.yarn/bin:$PATH
 export PATH=~/.composer/vendor/bin:$PATH
 
 # Enable aws autocomplete
 # complete -C /usr/share/awscli/aws_completer aws
-
-# Disable defective stick
-xinput disable `xinput | grep "DualPoint Stick" | cut -c 55-57`
 
 # Activate AWS profile
 export AWS_DEFAULT_PROFILE=butchershop
@@ -117,4 +113,3 @@ setxkbmap -option "ctrl:nocaps"
 
 # Enable fuzzy search
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
-
