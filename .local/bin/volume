@@ -2,7 +2,7 @@
 
 # TODO: this matches the first RUNNING sink, consider better alternatives
 
-SINK=`pactl list short sinks | grep --max-count=1 RUNNING | cut -c 1`
+SINK=`pactl list short sinks | grep --max-count=1 RUNNING | cut -c 1-2`
 
 if [ ! -z "$SINK" ] && [ ! -z "$1" ]; then
     `pactl set-sink-volume $SINK $1`

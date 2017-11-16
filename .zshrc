@@ -87,12 +87,14 @@ source $ZSH/oh-my-zsh.sh
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
+# Disable bothersome auto cd
+unsetopt AUTO_CD
 
 # Load aliases
 source $HOME/.aliases
 
-# Activate autoenv
-source ~/.autoenv/activate.sh
+# Activate direnv
+eval "$(direnv hook zsh)"
 
 # Additions to PATH
 export PATH=~/.local/bin:$PATH
